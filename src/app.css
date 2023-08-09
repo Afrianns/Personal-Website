@@ -1,0 +1,90 @@
+:root {
+  /* Dark Mode Colors */
+  --bg: #151515;
+  --secondary: #45F4EA;
+  --secondary-bg:#1B1B1B;
+  --tertiery-bg:#262626;
+  --text-color: #F8F8F8;
+  --toggle: #000;
+  --shadow: #121212;
+  
+  --font-epi: 'Epilogue', sans-serif;
+  --font-fjall: 'Fjalla One', sans-serif;
+  background-color: var(--bg);
+  color: var(--text-color);
+  
+}
+/* Light Mode Colors */
+
+:root.light{
+  --bg: #FDFDFD;
+  --secondary: #03A59B;
+  --secondary-bg:#F6F6F6;
+  --tertiery-bg:#EEEEEE;
+  --text-color: #151515;
+  --shadow: #ececec;
+  --toggle: #D9D9D9;
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+p,h1{
+  transition: none;
+}
+
+
+#app {
+  transition: all ease 0.5s;
+  text-align: center;
+}
+
+svg path {
+  fill: var(--secondary);
+}
+
+.wrapper{
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.main {
+  font-family: var(--font-fjall);
+  padding: 5rem 0;
+  font-size: 2rem;
+  margin: 5rem auto;
+}
+
+button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  margin-top: 4rem;
+  padding: 0.75rem 2rem;
+  background-color: transparent;
+  color: var(--secondary);
+  border: 2px solid var(--secondary);
+}
+
+.visible {
+  display: none;
+}
+
+.download svg path {
+  fill: var(--secondary);
+}
+
+button:hover {
+  background-color: var(--secondary);
+  color: var(--bg);
+}
+
+button:hover .download svg path {
+  fill: var(--bg);
+}

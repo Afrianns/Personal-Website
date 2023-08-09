@@ -10,3 +10,11 @@
     fill="red"
   />
 </svg>
+
+<style>
+  @media screen and (max-width: 500px) {
+    svg {
+      width: 60%;
+    }
+  }
+</style>

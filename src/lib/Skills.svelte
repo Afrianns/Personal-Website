@@ -39,4 +39,16 @@
     height: 15px;
     background-color: var(--secondary);
   }
+
+  @media screen and (max-width: 1055px) {
+    .list-skills {
+      max-width: 100vw;
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    .list-skills {
+      grid-template-columns: repeat(2, max-content);
+    }
+  }
 </style>

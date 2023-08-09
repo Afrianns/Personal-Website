@@ -7,6 +7,7 @@
   --text-color: #F8F8F8;
   --toggle: #000;
   --shadow: #121212;
+  --bg-form: #2C2F2D;
   
   --font-epi: 'Epilogue', sans-serif;
   --font-fjall: 'Fjalla One', sans-serif;
@@ -23,6 +24,7 @@
   --tertiery-bg:#EEEEEE;
   --text-color: #151515;
   --shadow: #ececec;
+  --bg-form: #D8D8D8;
   --toggle: #D9D9D9;
 }
 

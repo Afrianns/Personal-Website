@@ -13,7 +13,7 @@
   <div class="bio-wrapper-noicon">
     <div class="bio-info">
       <div class="bio-header">
-        <p><span class="greet">HI</span>, MY NAME IS</p>
+        <p><span class="greet">HELLO</span>, MY NAME IS</p>
         <h1><span class="nickname">HANIF</span> NANDA AFRIAN</h1>
       </div>
       <p class="bio-desc">
@@ -35,11 +35,31 @@
     <img class="my-photo" src={photo} alt="" />
   </div>
   <ul class="link-icon">
-    <li class="test"><Linkedin /></li>
-    <li><Twitter /></li>
-    <li><Github /></li>
-    <li><Codewars /></li>
-    <li><FEMentor /></li>
+    <li>
+      <a href="https://www.linkedin.com/in/hanif-nanda-afrian-203788254/">
+        <Linkedin />
+      </a>
+    </li>
+    <li>
+      <a href="https://twitter.com/Afrianku">
+        <Twitter />
+      </a>
+    </li>
+    <li>
+      <a href="https://github.com/Afrianns">
+        <Github />
+      </a>
+    </li>
+    <li>
+      <a href="https://www.codewars.com/users/HanzN">
+        <Codewars />
+      </a>
+    </li>
+    <li>
+      <a href="https://www.frontendmentor.io/profile/HanzN77">
+        <FEMentor />
+      </a>
+    </li>
   </ul>
 </section>
 
@@ -89,6 +109,7 @@
   .link-icon {
     list-style: none;
   }
+
   .link-icon > * {
     cursor: pointer;
     margin: 0 0 2rem;
@@ -98,8 +119,6 @@
     object-fit: cover;
     border-left: 2px solid var(--secondary);
   }
-
-
 
   @media screen and (max-width: 1055px) {
     .content-wrapper {
@@ -125,6 +144,10 @@
       flex-direction: column-reverse;
     }
 
+    .nickname {
+      border: 0;
+    }
+
     .my-photo {
       margin: auto;
       max-width: 100%;
@@ -135,7 +158,13 @@
     }
 
     .link-icon {
+      align-items: center;
+      margin: 0;
       flex-wrap: wrap;
+      gap: 2rem;
+    }
+    .link-icon > * {
+      margin: 0 0 0.5rem;
     }
 
     .bio-header p {

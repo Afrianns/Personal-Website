@@ -3,7 +3,7 @@
 </script>
 
 <section class="main" id="skills">
-  <h1>SKILLS</h1>
+  <h1 class='text-header'>SKILLS</h1>
   <Border />
   <div class="list-skills">
     <p><span class="lists" /> HTML</p>
@@ -19,6 +19,27 @@
   .main {
     background-color: var(--secondary-bg);
   }
+  #skills {
+    position: relative;
+  }
+
+  #skills::after {
+    content: "";
+    position: absolute;
+    /* bottom: 10%; */
+
+    right: -7.5rem;
+    transform: rotate(4deg);
+    bottom: 0;
+    width: 50rem;
+    height: 20rem;
+    background-repeat: no-repeat;
+    object-fit: cover;
+    background-size: contain;
+    background-position: bottom right;
+    background-image: url("../assets/icons/decoration-two.svg");
+  }
+
   .list-skills {
     max-width: 70vw;
     margin: 5rem auto 3rem;
@@ -49,6 +70,7 @@
   @media screen and (max-width: 600px) {
     .list-skills {
       grid-template-columns: repeat(2, max-content);
+      font-size: 1.5rem;
     }
   }
 </style>

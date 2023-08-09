@@ -15,6 +15,10 @@
   }
   let result = get_project(url + "?per_page=6");
 
+  result.then((r) => {
+    console.log(r);
+  });
+
   function loadMore() {
     let param = "";
     if (isLoad) {
@@ -23,10 +27,17 @@
     result = get_project("https://api.netlify.com/api/v1/sites" + param);
     isLoad = !isLoad;
   }
+
+  function converDate(date) {
+    let newdate = new Date(date);
+    let arrayUTC = newdate.toUTCString().split(" ");
+    let res = arrayUTC.filter((_, i) => i <= 3);
+    return res.join(" ");
+  }
 </script>
 
 <section class="main" id="projects">
-  <h1>PROJECTS</h1>
+  <h1 class="text-header">PROJECTS</h1>
   <Border />
 
   {#await result}
@@ -36,14 +47,17 @@
       {#each sites.data as site}
         <div class="projects">
           <div class="img-container">
+            <span class="date">{converDate(site["created_at"])}</span>
             <img
               src={site["screenshot_url"] || Placeholder}
               class="placeholder"
               alt=""
             />
           </div>
-          <h1>{site["name"].split("-").join(" ")}</h1>
-          <a class="link" href={site["url"]} target="_blank">visit website</a>
+          <div class="context">
+            <h1>{site["name"].split("-").join(" ")}</h1>
+            <a class="link" href={site["url"]} target="_blank">visit website</a>
+          </div>
         </div>
       {/each}
     </div>
@@ -75,7 +89,7 @@
     margin: auto;
   }
   .list-projects {
-    margin: 4rem 0;
+    margin: 5rem 0 3rem;
     display: grid;
     justify-content: center;
     gap: 1.5rem;
@@ -83,7 +97,7 @@
     grid-template-columns: repeat(3, max-content);
   }
   .placeholder {
-    object-fit: contain;
+    object-fit: cover;
     width: 20rem;
     transition: all 0.5s ease;
     height: 15rem;
@@ -94,22 +108,25 @@
     transform: scale(1.2);
   }
 
-  .placeholder::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    width: 100px;
-    height: 100px;
-    background-color: red;
-  }
-
   .img-container {
     background-color: var(--secondary-bg);
+    border-radius: 10px;
     overflow: hidden;
     padding: 2px;
+    position: relative;
+  }
+
+  .img-container::before {
+    content: "";
+    position: absolute;
+    z-index: 5;
+    top: -2rem;
+    left: -5rem;
+    bottom: 5px;
+    width: 100vw;
+    height: 50px;
+    filter: blur(25px);
+    background-color: rgb(28, 28, 28);
   }
 
   .img-container:hover {
@@ -118,18 +135,47 @@
   }
 
   .projects {
+    border-radius: 10px;
     cursor: pointer;
-    margin: 2rem 0;
+    background-color: var(--tertiery-bg);
+  }
+  .context {
+    padding: 10px 30px 30px;
+  }
+
+  .date {
+    margin: 1rem;
+    position: absolute;
+    padding: 5px 10px;
+    right: 0;
+    z-index: 5;
+    box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.556);
+    background-color: var(--tertiery-bg);
+    border-radius: 5px;
+    color: var(--secondary);
   }
   .projects h1 {
     font-family: var(--font-epi);
     padding: 0.75rem 0;
     text-align: left;
+    text-transform: uppercase;
   }
   .projects .link {
     color: var(--secondary);
     display: block;
     text-align: right;
     font-family: var(--font-epi);
+  }
+
+  @media screen and (max-width: 1055px) {
+    .list-projects {
+      grid-template-columns: repeat(2, max-content);
+    }
+  }
+
+  @media screen and (max-width: 700px) {
+    .list-projects {
+      grid-template-columns: max-content;
+    }
   }
 </style>

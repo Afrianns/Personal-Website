@@ -40,6 +40,7 @@ p,h1{
 
 
 #app {
+  overflow-x: hidden;
   transition: all ease 0.5s;
   text-align: center;
 }
@@ -89,4 +90,17 @@ button:hover {
 
 button:hover .download svg path {
   fill: var(--bg);
+}
+
+@media screen and (max-width: 600px) {
+  .main {
+    font-family: var(--font-fjall);
+    padding: 3rem 0;
+    font-size: 2rem;
+    margin: 2rem auto;
+  }
+  .main .text-header{
+    font-size: 2rem;
+  }
+  
 }

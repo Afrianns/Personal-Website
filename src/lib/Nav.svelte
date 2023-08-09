@@ -22,7 +22,7 @@
   }
 </script>
 
-<nav class="nav-wrapper wrapper">
+<nav class="nav-wrapper wrapper" id="header">
   <div class="nav-mobile">
     <div class="toggle" on:click={toggleMode}>
       <span class="toggle-button" class:toggle-pos={mode_dark} />
@@ -52,7 +52,7 @@
   <ul class="navbar" class:inactive>
     <li><a href="#skills">SKILLS</a></li>
     <li><a href="#projects">PROJECTS</a></li>
-    <li>CONTACTS</li>
+    <li><a href="#contact">CONTACTS</a></li>
   </ul>
 </nav>
 
@@ -108,7 +108,6 @@
     left: 40px;
   }
 
-
   .menu {
     display: none;
   }
@@ -137,6 +136,7 @@
       justify-content: space-between;
     }
     .nav-wrapper {
+      padding: 1rem 2rem;
       border-top: 2px solid var(--secondary);
       flex-direction: column;
       background-color: var(--bg);

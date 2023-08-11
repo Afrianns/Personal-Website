@@ -1,16 +1,16 @@
 <script lang="ts">
+  
   import Airtable from "airtable";
   import Swal from "sweetalert2";
 
   let reset_value_name = "";
   let reset_value_email = "";
   let reset_value_desc = "";
+
   let sendable = true;
 
   const api_key = import.meta.env.VITE_AIRTABLE_ACCESS;
   const api_base = import.meta.env.VITE_AIRTABLE_BASE;
-
-  $: console.log(sendable);
 
   function getInquiry(param) {
     if (sendable == false) {
@@ -23,7 +23,7 @@
         let alert_message = {
           icon: "error",
           title:
-            "<p class='fn'>Value Cannot Be Empty. <br><br>  <small>Please, Try Again!</small></p>",
+            "<p class='fn'>Value Cannot Be Empty. <br>  <small>Please, Try Again!</small></p>",
         };
         alert(alert_message);
         sendable = true;
@@ -51,18 +51,22 @@
 
         if (err) {
           console.error(err);
+
           let alert_message = {
             icon: "error",
             title: "<p class='fn'>Failed to Send Message.</p>",
           };
+
           alert(alert_message);
           sendable = true;
           return;
         }
+
         let alert_message = {
           icon: "success",
           title: "<p class='fn'>Message Successfuly Sent</p>",
         };
+
         alert(alert_message);
       }
     );

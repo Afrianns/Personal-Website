@@ -1,4 +1,85 @@
 <script lang="ts">
+  import Airtable from "airtable";
+  import Swal from "sweetalert2";
+
+  let reset_value_name = "";
+  let reset_value_email = "";
+  let reset_value_desc = "";
+
+  const api_key = import.meta.env.VITE_AIRTABLE_ACCESS;
+  const api_base = import.meta.env.VITE_AIRTABLE_BASE;
+
+  function getInquiry(param) {
+    for (const idx in [0, 1, 2]) {
+      if (param.target[idx].value == "") {
+        let alert_message = {
+          icon: "error",
+          title:
+            "Value Cannot Be Empty. <br><br>  <small>Please, Try Again!</small>",
+        };
+        alert(alert_message);
+        return;
+      }
+    }
+
+    let base = new Airtable({
+      apiKey: api_key,
+    }).base(api_base);
+
+    base("inquiries").create(
+      [
+        {
+          fields: {
+            Names: param.target[0].value,
+            Emails: param.target[1].value,
+            Messages: param.target[2].value,
+          },
+        },
+      ],
+      function status(err) {
+        reset();
+        if (err) {
+          console.error(err);
+          let alert_message = {
+            icon: "error",
+            title: "Failed to Send Message.",
+          };
+          alert(alert_message);
+          return;
+        }
+        let alert_message = {
+          icon: "success",
+          title: "Message Successfuly Sent",
+        };
+        alert(alert_message);
+      }
+    );
+  }
+
+  function alert(message) {
+    const Toast = Swal.mixin({
+      toast: true,
+      position: "bottom-end",
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener("mouseenter", Swal.stopTimer);
+        toast.addEventListener("mouseleave", Swal.resumeTimer);
+      },
+    });
+
+    Toast.fire({
+      icon: message.icon,
+      title: message.title,
+    });
+  }
+
+  function reset() {
+    reset_value_name = "";
+    reset_value_email = "";
+    reset_value_desc = "";
+  }
 </script>
 
 <section class="main" id="contact">
@@ -19,17 +100,37 @@
         ></a
       >
     </div>
-    <div class="form-wrapper">
+    <form
+      method="post"
+      class="form-wrapper"
+      on:submit|preventDefault={getInquiry}
+    >
       <div class="left-wrapper">
         <label for="name">Name</label>
-        <input type="text" name="name" id="name" />
+        <input
+          type="text"
+          name="name"
+          id="name"
+          bind:value={reset_value_name}
+        />
         <label for="email">Email</label>
-        <input type="text" name="email" id="email" />
+        <input
+          type="email"
+          name="email"
+          id="email"
+          bind:value={reset_value_email}
+        />
       </div>
       <div class="right-wrapper">
         <label for="message">Message</label>
-        <textarea name="message" id="message" cols="50" rows="50" />
-        <button class="btn">
+        <textarea
+          name="message"
+          id="message"
+          cols="50"
+          rows="50"
+          bind:value={reset_value_desc}
+        />
+        <button type="submit" class="btn">
           Send
           <span class="download">
             <svg
@@ -44,7 +145,7 @@
           </span></button
         >
       </div>
-    </div>
+    </form>
   </div>
 </section>
 
@@ -65,6 +166,7 @@
     height: 20rem;
     background-repeat: no-repeat;
     object-fit: cover;
+    z-index: 1;
     background-size: contain;
     background-position: bottom left;
     background-image: url("../assets/icons/decoration.svg");
@@ -81,6 +183,7 @@
     margin: auto;
   }
   .footer-wrapper h1 {
+    text-transform: uppercase;
     grid-area: 1;
   }
 
@@ -92,10 +195,13 @@
   }
 
   .form-wrapper {
+    position: relative;
+    z-index: 2;
     margin-top: 3rem;
     display: flex;
     justify-content: center;
     align-items: flex-start;
+    font-family: var(--font-epi);
     gap: 4rem;
   }
 
@@ -115,11 +221,15 @@
   .footer-wrapper input,
   .footer-wrapper textarea {
     border: 0;
+    padding: 0.75rem;
     width: 25rem;
     height: 50px;
     background-color: var(--bg-form);
     border-bottom: 2px solid var(--secondary);
     margin-bottom: 2rem;
+    color: var(--text-color);
+    font-size: 1rem;
+    font-weight: 400;
   }
   .btn {
     margin-top: 0.75rem;

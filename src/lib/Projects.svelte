@@ -140,7 +140,7 @@
     background-color: var(--tertiery-bg);
   }
   .context {
-    padding: 10px 30px 30px;
+    padding: 0 15px 15px;
   }
 
   .date {
@@ -155,8 +155,8 @@
     color: var(--secondary);
   }
   .projects h1 {
-    font-family: var(--font-epi);
-    padding: 0.75rem 0;
+    font-family: var(--font-alerta);
+    padding: 0.75rem 0 2rem;
     text-align: left;
     text-transform: uppercase;
   }

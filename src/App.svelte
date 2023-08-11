@@ -11,6 +11,11 @@
 <Skills />
 <Projects />
 <Contact />
+<p class="footer-credit">
+  Design and Developed by <a target="_blank" href="http://hanifna.rf.gd/"
+    >HanifNA</a
+  >
+</p>
 
 <style>
 </style>

@@ -9,8 +9,9 @@
   --shadow: #121212;
   --bg-form: #2C2F2D;
   
+  --font-alerta: 'Allerta Stencil', sans-serif;
   --font-epi: 'Epilogue', sans-serif;
-  --font-fjall: 'Fjalla One', sans-serif;
+  --font-fjall: 'Imbue', serif;
   background-color: var(--bg);
   color: var(--text-color);
   
@@ -40,6 +41,7 @@ p,h1{
 
 
 #app {
+  font-family: var(--font-epi);
   overflow-x: hidden;
   transition: all ease 0.5s;
   text-align: center;
@@ -90,6 +92,18 @@ button:hover {
 
 button:hover .download svg path {
   fill: var(--bg);
+}
+
+.footer-credit{
+  padding: .5rem 0;
+  opacity: .5;
+  font-family: var(--font-epi);
+  text-align: center;
+  color: var(--text-color);
+}
+
+.footer-credit a{
+  color: var(--secondary);
 }
 
 @media screen and (max-width: 600px) {

@@ -5,19 +5,28 @@
   let reset_value_name = "";
   let reset_value_email = "";
   let reset_value_desc = "";
+  let sendable = true;
 
   const api_key = import.meta.env.VITE_AIRTABLE_ACCESS;
   const api_base = import.meta.env.VITE_AIRTABLE_BASE;
 
+  $: console.log(sendable);
+
   function getInquiry(param) {
+    if (sendable == false) {
+      return;
+    }
+    sendable = false;
+
     for (const idx in [0, 1, 2]) {
       if (param.target[idx].value == "") {
         let alert_message = {
           icon: "error",
           title:
-            "Value Cannot Be Empty. <br><br>  <small>Please, Try Again!</small>",
+            "<p class='fn'>Value Cannot Be Empty. <br><br>  <small>Please, Try Again!</small></p>",
         };
         alert(alert_message);
+        sendable = true;
         return;
       }
     }
@@ -38,18 +47,21 @@
       ],
       function status(err) {
         reset();
+        sendable = true;
+
         if (err) {
           console.error(err);
           let alert_message = {
             icon: "error",
-            title: "Failed to Send Message.",
+            title: "<p class='fn'>Failed to Send Message.</p>",
           };
           alert(alert_message);
+          sendable = true;
           return;
         }
         let alert_message = {
           icon: "success",
-          title: "Message Successfuly Sent",
+          title: "<p class='fn'>Message Successfuly Sent</p>",
         };
         alert(alert_message);
       }
@@ -130,7 +142,12 @@
           rows="50"
           bind:value={reset_value_desc}
         />
-        <button type="submit" class="btn">
+        <button
+          type="submit"
+          class="btn"
+          disabled={!sendable}
+          class:disable-submit={!sendable}
+        >
           Send
           <span class="download">
             <svg
@@ -150,6 +167,11 @@
 </section>
 
 <style>
+  .disable-submit {
+    opacity: 0.3;
+    cursor: not-allowed;
+    filter: brightness(0.5);
+  }
   #contact {
     background-color: var(--tertiery-bg);
     padding: 2rem 0;

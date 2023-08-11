@@ -8,7 +8,7 @@
   --toggle: #000;
   --shadow: #121212;
   --bg-form: #2C2F2D;
-  
+
   --font-alerta: 'Allerta Stencil', sans-serif;
   --font-epi: 'Epilogue', sans-serif;
   --font-fjall: 'Imbue', serif;
@@ -104,6 +104,10 @@ button:hover .download svg path {
 
 .footer-credit a{
   color: var(--secondary);
+}
+
+.fn{
+  font-family: var(--font-epi);
 }
 
 @media screen and (max-width: 600px) {

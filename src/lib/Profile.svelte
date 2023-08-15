@@ -203,8 +203,8 @@
     .link-icon {
       gap: 3rem;
     }
-    .bio-header h1 {
-      font-size: 2rem;
-    }
+    /* .bio-header h1 {
+      font-size: 100%;
+    } */
   }
 </style>

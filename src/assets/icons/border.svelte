@@ -12,6 +12,9 @@
 </svg>
 
 <style>
+  svg path {
+    fill: var(--secondary);
+  }
   @media screen and (max-width: 500px) {
     svg {
       width: 60%;

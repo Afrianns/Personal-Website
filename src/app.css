@@ -49,7 +49,7 @@ p,h1{
   text-align: center;
 }
 
-svg path {
+.icon path {
   fill: var(--secondary);
 }
 

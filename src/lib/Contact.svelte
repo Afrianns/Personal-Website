@@ -1,5 +1,4 @@
 <script lang="ts">
-  
   import Airtable from "airtable";
   import Swal from "sweetalert2";
 
@@ -104,6 +103,7 @@
       <h1 class="text-header">Contact</h1>
       <a href="#header" class="backToTop"
         ><svg
+          class="icon"
           xmlns="http://www.w3.org/2000/svg"
           width="24"
           height="24"

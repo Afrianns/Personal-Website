@@ -3,6 +3,7 @@
   height="42"
   viewBox="0 0 52 52"
   fill="none"
+  class="icon"
   xmlns="http://www.w3.org/2000/svg"
 >
   <path

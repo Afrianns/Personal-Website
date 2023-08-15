@@ -1,11 +1,12 @@
 <script lang="ts">
   import Border from "../assets/icons/border.svelte";
-  import Placeholder from "../assets/blank-profile.png";
+  import Placeholder from "../assets/blank-image.png";
   import axios from "axios";
   let url = "https://api.netlify.com/api/v1/sites";
   let isLoad = false;
 
-  let api_key = import.meta.env.VITE_API_ACCESS;
+  const api_key = import.meta.env.VITE_API_ACCESS;
+
   async function get_project(url) {
     return axios.get(url, {
       headers: {
@@ -72,6 +73,7 @@
           xmlns="http://www.w3.org/2000/svg"
           width="24"
           height="24"
+          class={isLoad ? "rotate" : ""}
           viewBox="0 0 24 24"
           ><path
             d="m11.293 17.293 1.414 1.414L19.414 12l-6.707-6.707-1.414 1.414L15.586 11H6v2h9.586z"
@@ -85,9 +87,19 @@
 </section>
 
 <style>
+  .rotate {
+    transform: rotate(180deg);
+  }
+
   button {
     margin: auto;
   }
+
+  button:hover svg {
+    transition: all 0.5s ease;
+    transform: translateX(5px);
+  }
+
   .list-projects {
     margin: 5rem 0 3rem;
     display: grid;

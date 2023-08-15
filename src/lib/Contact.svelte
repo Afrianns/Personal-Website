@@ -235,6 +235,12 @@
     padding: 0.4rem 1rem;
     background-color: var(--bg);
     text-align: center;
+    border: 1px solid transparent;
+  }
+
+  .backToTop:hover {
+    transition: all 0.5s ease;
+    border: 1px solid var(--secondary);
   }
 
   label {
@@ -262,6 +268,11 @@
     margin-left: auto;
   }
 
+  .btn:hover svg {
+    transition: all 0.5s ease;
+    transform: translateX(5px);
+  }
+
   .right-wrapper textarea {
     height: 11rem;
     resize: none;
@@ -279,6 +290,14 @@
     .footer-wrapper input,
     .footer-wrapper textarea {
       width: 90vw;
+    }
+  }
+  @media screen and (max-width: 600px) {
+    .footer-wrapper {
+      padding: 0;
+    }
+    .contact-wrapper {
+      margin: 2rem 1.5rem 0;
     }
   }
 </style>

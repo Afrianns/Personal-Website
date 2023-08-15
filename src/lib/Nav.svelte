@@ -52,7 +52,7 @@
   <ul class="navbar" class:inactive>
     <li><a href="#skills">SKILLS</a></li>
     <li><a href="#projects">PROJECTS</a></li>
-    <li><a href="#contact">CONTACTS</a></li>
+    <li><a href="#contact">CONTACT</a></li>
   </ul>
 </nav>
 
@@ -66,23 +66,25 @@
   }
 
   .navbar {
+    transition: all 0.5s ease-in-out;
     width: 100%;
     display: flex;
     list-style: none;
     justify-content: right;
     align-items: center;
-    gap: 50px;
+    gap: 25px;
   }
   li a {
     text-decoration: none;
     color: var(--text-color);
   }
   .navbar li {
+    border-bottom: 1px solid var(--secondary);
     cursor: pointer;
   }
 
   .navbar li:hover {
-    text-decoration: underline;
+    border-bottom: 2px solid var(--secondary);
   }
 
   .toggle {

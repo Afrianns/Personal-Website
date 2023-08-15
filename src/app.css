@@ -53,6 +53,15 @@ p,h1{
   fill: var(--secondary);
 }
 
+.skill-icon {
+  filter: grayscale(1);
+  width: 38px;
+}
+
+.list-skills p:hover .skill-icon {
+  filter: grayscale(0);
+}
+
 .wrapper{
   max-width: 1280px;
   margin: 0 auto;
@@ -62,7 +71,7 @@ p,h1{
   font-family: var(--font-fjall);
   padding: 5rem 0;
   font-size: 2rem;
-  margin: 5rem auto;
+  margin: 1rem auto;
 }
 
 button {
@@ -124,7 +133,7 @@ button:hover .download svg path {
     margin: 2rem auto;
   }
   .main .text-header{
-    font-size: 2rem;
+    font-size: 2.5rem;
   }
   
 }

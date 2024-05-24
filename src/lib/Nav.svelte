@@ -24,7 +24,8 @@
 
 <nav class="nav-wrapper wrapper" id="header">
   <div class="nav-mobile">
-    <div class="toggle" on:click={toggleMode}>
+    <h1>AFRIAN.</h1>
+    <!-- <div class="toggle" on:click={toggleMode}>
       <span class="toggle-button" class:toggle-pos={mode_dark} />
     </div>
     <div class="menu" on:click={() => (inactive = !inactive)}>
@@ -47,10 +48,9 @@
           d="M208.49 191.51a12 12 0 0 1-17 17L128 145l-63.51 63.49a12 12 0 0 1-17-17L111 128L47.51 64.49a12 12 0 0 1 17-17L128 111l63.51-63.52a12 12 0 0 1 17 17L145 128Z"
         /></svg
       >
-    </div>
+    </div> -->
   </div>
   <ul class="navbar" class:inactive>
-    <li><a href="#skills">SKILLS</a></li>
     <li><a href="#projects">PROJECTS</a></li>
     <li><a href="#contact">CONTACT</a></li>
   </ul>
@@ -58,7 +58,7 @@
 
 <style>
   .nav-wrapper {
-    padding: 3rem 2rem;
+    padding: 2rem;
     font-family: var(--font-epi);
     display: flex;
     justify-content: center;
@@ -76,10 +76,11 @@
   }
   li a {
     text-decoration: none;
+    padding: 0;
     color: var(--text-color);
   }
   .navbar li {
-    border-bottom: 1px solid var(--secondary);
+    border: 2px solid transparent;
     cursor: pointer;
   }
 

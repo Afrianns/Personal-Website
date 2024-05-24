@@ -1,5 +1,4 @@
 <script lang="ts">
-  import Border from "../assets/icons/border.svelte";
   import Placeholder from "../assets/blank-image.png";
   import axios from "axios";
   let url = "https://api.netlify.com/api/v1/sites";
@@ -39,11 +38,12 @@
 
 <section class="main" id="projects">
   <h1 class="text-header">PROJECTS</h1>
-  <Border />
 
   {#await result}
     <p>Loading</p>
   {:then sites}
+    <p>
+    </p>
     <div class="list-projects">
       {#each sites.data as site}
         <div class="projects">
@@ -56,8 +56,8 @@
             />
           </div>
           <div class="context">
-            <h1>{site["name"].split("-").join(" ")}</h1>
-            <a class="link" href={site["url"]} target="_blank">visit website</a>
+            <h1 class="subtitle">{site["name"].split("-").join(" ")}</h1>
+            <a class="link" href={site["url"]} target="_blank">visit site</a>
           </div>
         </div>
       {/each}
@@ -66,7 +66,7 @@
       {#if isLoad}
         Close Projects
       {:else}
-        Load Projects
+        Load All
       {/if}
       <span class="download">
         <svg
@@ -87,21 +87,30 @@
 </section>
 
 <style>
+ .main {
+    background-color: var(--secondary-bg);
+  }
+  
   .rotate {
     transform: rotate(180deg);
   }
 
-  button {
-    margin: auto;
+  .subtitle{
+    font-size: 1rem;
   }
 
+  button {
+    margin: auto;
+    transition: all 0.5s ease-in-out;
+    transform: translateX(0);
+  }
+  
   button:hover svg {
-    transition: all 0.5s ease;
     transform: translateX(5px);
   }
 
   .list-projects {
-    margin: 5rem 0 3rem;
+    margin: 2rem 0 3rem;
     display: grid;
     justify-content: center;
     gap: 1.5rem;
@@ -115,16 +124,16 @@
     height: 15rem;
   }
 
-  .placeholder:hover {
+  .projects:hover .placeholder {
     filter: brightness(0.5);
-    transform: scale(1.2);
+    transform: scale(1.1);
   }
 
   .img-container {
     background-color: var(--secondary-bg);
-    border-radius: 10px;
     overflow: hidden;
     padding: 2px;
+    border-radius: 10px 10px 0 0;
     position: relative;
   }
 
@@ -141,16 +150,20 @@
     background-color: rgb(28, 28, 28);
   }
 
-  .img-container:hover {
+  .projects {
+    border: 2px solid transparent;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.005);
+    background-color: var(--tertiery-bg);
+  }
+  
+  .projects:hover {
     border: 2px solid var(--secondary);
     padding: 0;
   }
 
-  .projects {
-    border-radius: 10px;
-    cursor: pointer;
-    background-color: var(--tertiery-bg);
-  }
+
   .context {
     padding: 0 15px 15px;
   }
@@ -176,6 +189,7 @@
     color: var(--secondary);
     display: block;
     text-align: right;
+    font-size: .9rem;
     font-family: var(--font-epi);
   }
 

@@ -4,19 +4,17 @@
   import Sass from "../assets/skill-icons/sass.svelte";
   import Javascript from "../assets/skill-icons/javascript.svelte";
   import Vue from "../assets/skill-icons/vue.svelte";
-  import Php from "../assets/skill-icons/php.svelte";
+  import Laravel from "../assets/skill-icons/laravel.svelte";
 
-  import Border from "../assets/icons/border.svelte";
 </script>
 
 <section class="main" id="skills">
   <h1 class="text-header">SKILLS</h1>
-  <Border />
   <div class="list-skills">
     <p><Html /> HTML</p>
     <p><Css /> CSS</p>
     <p><Javascript /> JavaScript</p>
-    <p><Php /> PHP</p>
+    <p><Laravel /> Laravel</p>
     <p><Sass /> SASS</p>
     <p><Vue /> Vue</p>
   </div>
@@ -51,7 +49,7 @@
     z-index: 2;
     position: relative;
     max-width: 70vw;
-    margin: 5rem auto 3rem;
+    margin: 2rem auto 3rem;
     justify-content: center;
     display: grid;
     grid-template-columns: repeat(3, max-content);

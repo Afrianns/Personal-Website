@@ -101,20 +101,9 @@
   <div class="footer-wrapper">
     <div class="contact-wrapper">
       <h1 class="text-header">Contact</h1>
-      <a href="#header" class="backToTop"
-        ><svg
-          class="icon"
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          ><path
-            d="m12 3.879-7.061 7.06 2.122 2.122L12 8.121l4.939 4.94 2.122-2.122z"
-          /><path
-            d="m4.939 17.939 2.122 2.122L12 15.121l4.939 4.94 2.122-2.122L12 10.879z"
-          /></svg
-        ></a
-      >
+      <a href="#header" class="backToTop">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="icon"><path d="m12 3.879-7.061 7.06 2.122 2.122L12 8.121l4.939 4.94 2.122-2.122z"></path><path d="m4.939 17.939 2.122 2.122L12 15.121l4.939 4.94 2.122-2.122L12 10.879z"></path></svg>
+        </a>
     </div>
     <form
       method="post"
@@ -179,7 +168,6 @@
   #contact {
     background-color: var(--tertiery-bg);
     padding: 2rem 0;
-    margin-top: 1rem;
     border-right: 2px solid var(--secondary);
     position: relative;
   }
@@ -199,7 +187,7 @@
   }
 
   .main {
-    margin: 2rem auto 0;
+    margin: auto;
   }
 
   .footer-wrapper {
@@ -216,6 +204,7 @@
   .contact-wrapper {
     display: flex;
     max-width: 55rem;
+    align-items: center;
     margin: auto;
     justify-content: space-between;
   }
@@ -231,11 +220,18 @@
     gap: 4rem;
   }
 
-  .backToTop {
-    padding: 0.4rem 1rem;
+  .backToTop{
+    padding: .4rem .7rem 0;
+    /* width: 3rem;
+    height: 3rem; */
     background-color: var(--bg);
     text-align: center;
     border: 1px solid transparent;
+  }
+
+  .backToTop svg{
+    width: 2rem;
+    /* height: 2rem; */
   }
 
   .backToTop:hover {

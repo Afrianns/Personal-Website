@@ -1,46 +1,45 @@
-
 :root {
   /* Dark Mode Colors */
   --bg: #151515;
-  --secondary: #45F4EA;
-  --secondary-bg:#1B1B1B;
-  --tertiery-bg:#262626;
-  --text-color: #F8F8F8;
+  --secondary: #45f4ea;
+  --secondary-bg: #1b1b1b;
+  --tertiery-bg: #262626;
+  --text-color: #f8f8f8;
   --toggle: #000;
   --shadow: #121212;
-  --bg-form: #2C2F2D;
+  --bg-form: #2c2f2d;
+  --bg-card: #090909;
 
-  --font-alerta: 'Allerta Stencil', sans-serif;
-  --font-epi: 'Epilogue', sans-serif;
-  --font-fjall: 'Imbue', serif;
+  --font-alerta: "Allerta Stencil", sans-serif;
+  --font-epi: "Epilogue", sans-serif;
+  --font-title: "Teko", serif;
   background-color: var(--bg);
   color: var(--text-color);
-
 }
 
-
-:root.light{
+:root.light {
   /* Light Mode Colors */
-  --bg: #FDFDFD;
-  --secondary: #03A59B;
-  --secondary-bg:#F6F6F6;
-  --tertiery-bg:#EEEEEE;
+  --bg: #fdfdfd;
+  --bg-card: #fefefe;
+  --secondary: #03a59b;
+  --secondary-bg: #f6f6f6;
+  --tertiery-bg: #eeeeee;
   --text-color: #151515;
   --shadow: #ececec;
-  --bg-form: #D8D8D8;
-  --toggle: #D9D9D9;
+  --bg-form: #d8d8d8;
+  --toggle: #d9d9d9;
 }
 
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   scroll-behavior: smooth;
 }
-p,h1{
+p,
+h1 {
   transition: none;
 }
-
 
 #app {
   font-family: var(--font-epi);
@@ -62,16 +61,16 @@ p,h1{
   filter: grayscale(0);
 }
 
-.wrapper{
+.wrapper {
   max-width: 1280px;
   margin: 0 auto;
 }
 
 .main {
-  font-family: var(--font-fjall);
-  padding: 5rem 0;
+  font-family: var(--font-title);
+  padding: 2rem 0;
   font-size: 2rem;
-  margin: 1rem auto;
+  margin: auto;
 }
 
 button {
@@ -105,35 +104,34 @@ button:hover .download svg path {
   fill: var(--bg);
 }
 
-.footer-credit{
-  padding: .5rem 0;
-  opacity: .5;
+.footer-credit {
+  padding: 0.5rem 0;
+  opacity: 0.5;
   font-family: var(--font-epi);
   text-align: center;
   color: var(--text-color);
 }
 
-.footer-credit a{
+.footer-credit a {
   color: var(--secondary);
 }
 
-.fn{
+.fn {
   font-family: var(--font-epi);
 }
-.fn small{
+.fn small {
   color: grey;
   margin-top: 1rem;
 }
 
 @media screen and (max-width: 600px) {
   .main {
-    font-family: var(--font-fjall);
-    padding: 3rem 0;
+    font-family: var(--font-title);
+    padding: 2rem 0 3rem;
     font-size: 2rem;
-    margin: 2rem auto;
+    margin: 0 auto;
   }
-  .main .text-header{
+  .main .text-header {
     font-size: 2.5rem;
   }
-  
 }

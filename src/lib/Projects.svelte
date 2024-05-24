@@ -1,32 +1,65 @@
 <script lang="ts">
   import Placeholder from "../assets/blank-image.png";
   import axios from "axios";
+  import { onMount } from "svelte";
+  
   let url = "https://api.netlify.com/api/v1/sites";
   let isLoad = false;
-
+  
+  let sites = [];
+  let num = 1;
+  let isLoadedAll = false;
+  let Loading = false;
+  let LoadingMore = false;
+  let total_sites = 0;
+  
   const api_key = import.meta.env.VITE_API_ACCESS;
 
-  async function get_project(url) {
-    return axios.get(url, {
+  async function get_project(url, param) {
+    await axios.get(url + param, {
       headers: {
         Authorization: `Bearer ${api_key}`,
       },
-    });
+    }).then(result => {
+
+      if(param == ''){
+        // result of total sites from user
+        total_sites = result.data[0]['site_count'];
+      } else{
+        // result of every site & push it to sites
+        result.data.forEach(element => {
+          sites = [...sites, element];
+        });
+        // loading boolean 
+        Loading = false;
+        LoadingMore = false;
+      }
+    }).catch(error => {
+      console.log(error);
+    })
+    
   }
-  let result = get_project(url + "?per_page=6");
-
-  result.then((r) => {
-    console.log(r);
-  });
-
   function loadMore() {
-    let param = "";
-    if (isLoad) {
-      param = "?per_page=6";
+    // click more pagination
+    num++;
+    let param =  `?page=${num}&per_page=6`;
+    LoadingMore = true;
+    get_project("https://api.netlify.com/api/v1/sites", param);
+
+    // calculate total side to determined load more
+    let calc = total_sites - (num * 6);
+    // console.log(total_sites, sites.length, calc);
+    if(calc <= 0){
+      isLoadedAll = true;
     }
-    result = get_project("https://api.netlify.com/api/v1/sites" + param);
-    isLoad = !isLoad;
+
   }
+
+  // get user & get total sites
+  function getUser(){
+    get_project("https://api.netlify.com/api/v1/users", '');
+  }
+  
 
   function converDate(date) {
     let newdate = new Date(date);
@@ -34,18 +67,22 @@
     let res = arrayUTC.filter((_, i) => i <= 3);
     return res.join(" ");
   }
+  
+
+  onMount(() => {
+    getUser();
+    Loading = true;
+    get_project(url, "?page=1&per_page=6");
+  })
 </script>
 
 <section class="main" id="projects">
   <h1 class="text-header">PROJECTS</h1>
-
-  {#await result}
-    <p>Loading</p>
-  {:then sites}
-    <p>
-    </p>
     <div class="list-projects">
-      {#each sites.data as site}
+      {#if Loading}
+       <p class="loading">Loading...</p>
+      {/if}
+      {#each sites as site}
         <div class="projects">
           <div class="img-container">
             <span class="date">{converDate(site["created_at"])}</span>
@@ -62,31 +99,34 @@
         </div>
       {/each}
     </div>
-    <button on:click={loadMore}>
-      {#if isLoad}
-        Close Projects
+      {#if LoadingMore}
+        Loading
       {:else}
-        Load All
-      {/if}
-      <span class="download">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          class={isLoad ? "rotate" : ""}
-          viewBox="0 0 24 24"
-          ><path
-            d="m11.293 17.293 1.414 1.414L19.414 12l-6.707-6.707-1.414 1.414L15.586 11H6v2h9.586z"
-          /></svg
-        >
-      </span></button
-    >
-  {:catch error}
-    <p style="color: red">{error.message}</p>
-  {/await}
+      {#if !isLoadedAll && !Loading}
+        <button on:click={loadMore}>
+          Load More
+          <span class="download">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              class={isLoad ? "rotate" : ""}
+              viewBox="0 0 24 24"
+              ><path
+                d="m11.293 17.293 1.414 1.414L19.414 12l-6.707-6.707-1.414 1.414L15.586 11H6v2h9.586z"
+              /></svg
+            >
+          </span>
+        </button>
+        {/if}
+    {/if}
 </section>
 
 <style>
+  .loading{
+    font-size: 2rem;
+    text-align: center;
+  }
  .main {
     background-color: var(--secondary-bg);
   }
@@ -180,7 +220,7 @@
     color: var(--secondary);
   }
   .projects h1 {
-    font-family: var(--font-alerta);
+    font-family: var(--font-secondary);
     padding: 0.75rem 0 2rem;
     text-align: left;
     text-transform: uppercase;
@@ -190,7 +230,7 @@
     display: block;
     text-align: right;
     font-size: .9rem;
-    font-family: var(--font-epi);
+    font-family: var(--font-secondary);
   }
 
   @media screen and (max-width: 1055px) {

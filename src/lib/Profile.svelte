@@ -14,7 +14,7 @@
     <div class="bio-info">
       <div class="bio-header">
         <p><span class="greet">HELLO</span>, MY NAME IS</p>
-        <h1>HANIF NANDA AFRIAN</h1>
+        <h1 class='brand'>HANIF NANDA AFRIAN</h1>
       </div>
       <p class="bio-desc">
         A Person who Love Web Programming especally Frontend and Love to
@@ -80,11 +80,12 @@
   }
 
   .bio-info h1 {
-    font-family: var(--font-title);
-    font-size: 5rem;
+    font-family: var(--font-brand);
+    font-size: 4rem;
     letter-spacing: 1px;
     padding: 0;
-    line-height: 7rem;
+    margin-bottom: 2rem;
+    line-height: 5rem;
   }
 
   .bio-info .bio-desc {

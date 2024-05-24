@@ -10,8 +10,8 @@
   --bg-form: #2c2f2d;
   --bg-card: #090909;
 
-  --font-alerta: "Allerta Stencil", sans-serif;
-  --font-epi: "Epilogue", sans-serif;
+  --font-brand: "Rampart One", sans-serif;
+  --font-secondary: "Lato", sans-serif;
   --font-title: "Teko", serif;
   background-color: var(--bg);
   color: var(--text-color);
@@ -42,10 +42,14 @@ h1 {
 }
 
 #app {
-  font-family: var(--font-epi);
+  font-family: var(--font-secondary);
   overflow-x: hidden;
   transition: all ease 0.5s;
   text-align: center;
+}
+
+.brand {
+  font-family: var(--font-brand);
 }
 
 .icon path {
@@ -107,7 +111,7 @@ button:hover .download svg path {
 .footer-credit {
   padding: 0.5rem 0;
   opacity: 0.5;
-  font-family: var(--font-epi);
+  font-family: var(--font-secondary);
   text-align: center;
   color: var(--text-color);
 }
@@ -117,7 +121,7 @@ button:hover .download svg path {
 }
 
 .fn {
-  font-family: var(--font-epi);
+  font-family: var(--font-secondary);
 }
 .fn small {
   color: grey;

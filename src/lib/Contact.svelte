@@ -216,7 +216,7 @@
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    font-family: var(--font-epi);
+    font-family: var(--font-secondary);
     gap: 4rem;
   }
 

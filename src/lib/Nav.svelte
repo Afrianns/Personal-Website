@@ -1,30 +1,30 @@
 <script lang="ts">
-  let inactive = true;
-  let mode_dark = false;
-  let root_doc = document.documentElement;
-  let schemes: string;
+  // let inactive = true;
+  // let mode_dark = false;
+  // let root_doc = document.documentElement;
+  // let schemes: string;
 
-  if (localStorage.getItem("mode") == "light") {
-    mode_dark = true;
-    root_doc.classList.add("light");
-  }
+  // if (localStorage.getItem("mode") == "light") {
+  //   mode_dark = true;
+  //   root_doc.classList.add("light");
+  // }
 
-  function toggleMode() {
-    if (mode_dark) {
-      schemes = "dark";
-      root_doc.classList.remove("light");
-    } else {
-      schemes = "light";
-      root_doc.classList.add("light");
-    }
-    localStorage.setItem("mode", schemes);
-    mode_dark = !mode_dark;
-  }
+  // function toggleMode() {
+  //   if (mode_dark) {
+  //     schemes = "dark";
+  //     root_doc.classList.remove("light");
+  //   } else {
+  //     schemes = "light";
+  //     root_doc.classList.add("light");
+  //   }
+  //   localStorage.setItem("mode", schemes);
+  //   mode_dark = !mode_dark;
+  // }
 </script>
 
 <nav class="nav-wrapper wrapper" id="header">
   <div class="nav-mobile">
-    <h1>AFRIAN.</h1>
+    <h1 class='brand'>AFRIAN.</h1>
     <!-- <div class="toggle" on:click={toggleMode}>
       <span class="toggle-button" class:toggle-pos={mode_dark} />
     </div>
@@ -50,13 +50,14 @@
       >
     </div> -->
   </div>
-  <ul class="navbar" class:inactive>
+  <ul class="navbar">
     <li><a href="#projects">PROJECTS</a></li>
     <li><a href="#contact">CONTACT</a></li>
   </ul>
 </nav>
 
 <style>
+
   .nav-wrapper {
     padding: 2rem;
     font-family: var(--font-epi);

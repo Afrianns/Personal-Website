@@ -247,9 +247,4 @@
     }
   }
 
-  @media screen and (max-width: 400px) {
-    .list-projects {
-      margin: 0 .5rem;
-    }
-  }
 </style>

@@ -16,13 +16,24 @@
       return;
     }
     sendable = false;
+    
+    if(!cekEmail(param.target[1].value)){
+      let alert_message = {
+          icon: "error",
+          title:
+            "<p class='fn'>Email not valid.</p>",
+        };
+        alert(alert_message);
+        sendable = true;
+        return
+    }
 
     for (const idx in [0, 1, 2]) {
       if (param.target[idx].value == "") {
         let alert_message = {
           icon: "error",
           title:
-            "<p class='fn'>Value Cannot Be Empty. <br>  <small>Please, Try Again!</small></p>",
+            "<p class='fn'>Fields is required.</p>",
         };
         alert(alert_message);
         sendable = true;
@@ -53,7 +64,7 @@
 
           let alert_message = {
             icon: "error",
-            title: "<p class='fn'>Failed to Send Message.</p>",
+            title: "<p class='fn'>Failed to send the message.</p>",
           };
 
           alert(alert_message);
@@ -63,12 +74,19 @@
 
         let alert_message = {
           icon: "success",
-          title: "<p class='fn'>Message Successfuly Sent</p>",
+          title: "<p class='fn'>Message successfuly sent</p>",
         };
 
         alert(alert_message);
       }
     );
+  }
+
+  function cekEmail(param){
+    let regex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g
+
+    return regex.test(param);
+
   }
 
   function alert(message) {
@@ -117,23 +135,26 @@
           name="name"
           id="name"
           bind:value={reset_value_name}
-        />
-        <label for="email">Email</label>
+          required
+          />
+          <label for="email">Email</label>
         <input
           type="email"
           name="email"
           id="email"
           bind:value={reset_value_email}
-        />
-      </div>
-      <div class="right-wrapper">
-        <label for="message">Message</label>
-        <textarea
+          required
+          />
+        </div>
+        <div class="right-wrapper">
+          <label for="message">Message</label>
+          <textarea
           name="message"
           id="message"
           cols="50"
           rows="50"
           bind:value={reset_value_desc}
+          required
         />
         <button
           type="submit"
@@ -141,7 +162,11 @@
           disabled={!sendable}
           class:disable-submit={!sendable}
         >
-          Send
+          {#if sendable}        
+            Send
+          {:else}
+            Sending...
+          {/if}
           <span class="download">
             <svg
               xmlns="http://www.w3.org/2000/svg"

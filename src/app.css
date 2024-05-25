@@ -125,6 +125,7 @@ button:hover .download svg path {
 }
 .fn small {
   color: grey;
+  font-weight: lighter;
   margin-top: 1rem;
 }
 

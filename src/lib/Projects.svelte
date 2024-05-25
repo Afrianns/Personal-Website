@@ -1,5 +1,6 @@
 <script lang="ts">
   import Placeholder from "../assets/blank-image.png";
+  import LoadingIcon from "../assets/icons/loading.svelte";
   import axios from "axios";
   import { onMount } from "svelte";
   
@@ -80,7 +81,7 @@
   <h1 class="text-header">PROJECTS</h1>
     <div class="list-projects">
       {#if Loading}
-       <p class="loading">Loading...</p>
+        <LoadingIcon/>
       {/if}
       {#each sites as site}
         <div class="projects">
@@ -100,7 +101,7 @@
       {/each}
     </div>
       {#if LoadingMore}
-        Loading
+        <LoadingIcon/>
       {:else}
       {#if !isLoadedAll && !Loading}
         <button on:click={loadMore}>
@@ -129,6 +130,7 @@
   }
  .main {
     background-color: var(--secondary-bg);
+    padding-bottom: 4rem;
   }
   
   .rotate {
@@ -242,6 +244,12 @@
   @media screen and (max-width: 700px) {
     .list-projects {
       grid-template-columns: max-content;
+    }
+  }
+
+  @media screen and (max-width: 400px) {
+    .list-projects {
+      margin: 0 .5rem;
     }
   }
 </style>

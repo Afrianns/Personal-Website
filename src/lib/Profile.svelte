@@ -1,6 +1,5 @@
 <script lang="ts">
   // My Image
-  import photo from "../assets/my-photo.png";
   // My Icon Links
   import Twitter from "../assets/link-img/twitter.svelte";
   import Linkedin from "../assets/link-img/linkedin.svelte";
@@ -17,8 +16,8 @@
         <h1 class='brand'>HANIF NANDA AFRIAN</h1>
       </div>
       <p class="bio-desc">
-        A Person who Love Web Programming especally Frontend and Love to
-        Illustrate and Design, Always Curious About new Technology and Design.
+        A Person who Love Web Programming especially Frontend and Love to
+        Illustrate and Design, always curious about new Technologies and Designs.
       </p>
 
       <!-- <button>
@@ -34,27 +33,27 @@
       > -->
       <ul class="link-icon">
         <li>
-          <a href="https://www.linkedin.com/in/hanif-nanda-afrian-203788254/">
+          <a target="_blank" href="https://www.linkedin.com/in/hanif-nanda-afrian-203788254/">
             <Linkedin />
           </a>
         </li>
         <li>
-          <a href="https://twitter.com/Afrianku">
+          <a target="_blank" href="https://twitter.com/Afrianku">
             <Twitter />
           </a>
         </li>
         <li>
-          <a href="https://github.com/Afrianns">
+          <a target="_blank" href="https://github.com/Afrianns">
             <Github />
           </a>
         </li>
         <li>
-          <a href="https://www.codewars.com/users/HanzN">
+          <a target="_blank" href="https://www.codewars.com/users/HanzN">
             <Codewars />
           </a>
         </li>
         <li>
-          <a href="https://www.frontendmentor.io/profile/HanzN77">
+          <a target="_blank" href="https://www.frontendmentor.io/profile/Afrianns">
             <FEMentor />
           </a>
         </li>
@@ -73,7 +72,7 @@
   }
 
   .bio-header {
-    margin: 3rem 0 0;
+    margin: 5rem 0 0;
   }
   .bio-header p {
     font-size: 1.5rem;
@@ -81,7 +80,7 @@
 
   .bio-info h1 {
     font-family: var(--font-brand);
-    font-size: 4rem;
+    font-size: 3.5rem;
     letter-spacing: 1px;
     padding: 0;
     margin-bottom: 2rem;
@@ -89,10 +88,10 @@
   }
 
   .bio-info .bio-desc {
-    color: grey;
-    font-weight: 400;
+    color: rgb(105, 105, 105);
     max-width: 45ch;
     margin: auto;
+    line-height: 1.3rem;
     text-transform: lowercase;
   }
 
@@ -131,7 +130,11 @@
 
     .bio-header h1 {
       font-size: 3rem;
-      line-height: 5rem;
+      line-height: 3rem;
+    }
+
+    .bio-header p{
+      font-size: 1rem;
     }
   }
 
@@ -142,12 +145,15 @@
     .bio-wrapper-noicon .bio-info {
       text-align: center;
     }
-    .bio-info button {
-      width: 100%;
+    .link-icon {
+      gap: 0rem;
+      justify-content: space-between;
     }
 
-    .link-icon {
-      gap: 3rem;
+    
+    .bio-header h1 {
+      font-size: 2.5rem;
+      line-height: 3rem;
     }
   }
 </style>

@@ -24,40 +24,45 @@
 
 <nav class="nav-wrapper wrapper" id="header">
   <div class="nav-mobile">
-    <h1 class='brand'>AFRIAN.</h1>
+    <h1 class="brand">AFRIAN.</h1>
     <!-- <div class="toggle" on:click={toggleMode}>
       <span class="toggle-button" class:toggle-pos={mode_dark} />
-    </div>
-    <div class="menu" on:click={() => (inactive = !inactive)}>
-      <svg
-        class:visible={!inactive}
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        ><path d="M3 4h18v2H3V4Zm6 7h12v2H9v-2Zm-6 7h18v2H3v-2Z" /></svg
-      >
-
-      <svg
-        class:visible={inactive}
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        viewBox="0 0 256 256"
-        ><path
-          d="M208.49 191.51a12 12 0 0 1-17 17L128 145l-63.51 63.49a12 12 0 0 1-17-17L111 128L47.51 64.49a12 12 0 0 1 17-17L128 111l63.51-63.52a12 12 0 0 1 17 17L145 128Z"
-        /></svg
-      >
     </div> -->
-  </div>
-  <ul class="navbar">
-    <li><a href="#projects">PROJECTS</a></li>
-    <li><a href="#contact">CONTACT</a></li>
-  </ul>
+      <!-- <div class="menu" on:click={() => (inactive = !inactive)}>
+        <svg
+          class:visible={!inactive}
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          ><path d="M3 4h18v2H3V4Zm6 7h12v2H9v-2Zm-6 7h18v2H3v-2Z" />
+        </svg>
+          
+          
+        <svg
+          class:visible={inactive}
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 256 256"
+          ><path
+            d="M208.49 191.51a12 12 0 0 1-17 17L128 145l-63.51 63.49a12 12 0 0 1-17-17L111 128L47.51 64.49a12 12 0 0 1 17-17L128 111l63.51-63.52a12 12 0 0 1 17 17L145 128Z"
+            />
+        </svg>
+      </div>  -->
+        <ul class="navbar">
+          <li><a href="#projects">PROJECTS</a></li>
+          <li><a href="#contact">CONTACT</a></li>
+        </ul>
+      </div>
 </nav>
 
 <style>
-
+  .nav-mobile{
+    width: 100%;
+    justify-content: space-between;
+    display: flex;
+  }
   .nav-wrapper {
     padding: 2rem;
     font-family: var(--font-epi);
@@ -89,7 +94,7 @@
     border-bottom: 2px solid var(--secondary);
   }
 
-  .toggle {
+  /* .toggle {
     position: relative;
     width: 60px;
     height: 25px;
@@ -110,9 +115,9 @@
 
   .toggle-pos {
     left: 40px;
-  }
+  } */
 
-  .menu {
+  /* .menu {
     display: none;
   }
   .menu svg path {
@@ -120,25 +125,24 @@
   }
   .inactive {
     display: none;
-  }
+  } */
 
   @media screen and (max-width: 1055px) {
     .navbar {
       justify-content: center;
     }
   }
-  @media screen and (min-width: 600px) {
-    .inactive {
-      display: flex;
-    }
-  }
 
   @media screen and (max-width: 600px) {
+    .brand{
+      display: none;
+    }
     .nav-mobile {
       display: flex;
       width: 100%;
-      justify-content: space-between;
+      justify-content: end;
     }
+    
     .nav-wrapper {
       padding: 1rem 2rem;
       border-top: 2px solid var(--secondary);
@@ -147,15 +151,14 @@
       box-shadow: 0px 20px 40px var(--shadow);
     }
 
-    .navbar {
-      margin-top: 2rem;
-      flex-direction: column;
-    }
     .navbar > * {
       margin: 0.75rem 0;
     }
-    .menu {
-      display: block;
+
+    @media screen and (max-width: 400px) {
+      .navbar{
+        font-size: .8rem;
+      }
     }
   }
 </style>

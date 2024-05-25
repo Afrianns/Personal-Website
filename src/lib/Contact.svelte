@@ -158,7 +158,7 @@
         />
         <button
           type="submit"
-          class="btn"
+          class="btn button-style"
           disabled={!sendable}
           class:disable-submit={!sendable}
         >

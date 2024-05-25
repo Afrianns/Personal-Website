@@ -77,7 +77,7 @@ h1 {
   margin: auto;
 }
 
-button {
+.button-style {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -99,12 +99,12 @@ button {
   fill: var(--secondary);
 }
 
-button:hover {
+.button-style:hover {
   background-color: var(--secondary);
   color: var(--bg);
 }
 
-button:hover .download svg path {
+.button-style:hover .download svg path {
   fill: var(--bg);
 }
 

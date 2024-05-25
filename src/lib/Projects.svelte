@@ -8,21 +8,23 @@
   let isLoad = false;
   
   let sites = [];
-  let num = 1;
+  let num = 0;
   let isLoadedAll = false;
   let Loading = false;
   let LoadingMore = false;
   let total_sites = 0;
-  
+  let error = '';
+
   const api_key = import.meta.env.VITE_API_ACCESS;
 
   async function get_project(url, param) {
     await axios.get(url + param, {
+      timeout: 10000,
       headers: {
         Authorization: `Bearer ${api_key}`,
       },
     }).then(result => {
-
+      num++;
       if(param == ''){
         // result of total sites from user
         total_sites = result.data[0]['site_count'];
@@ -35,25 +37,32 @@
         Loading = false;
         LoadingMore = false;
       }
-    }).catch(error => {
-      console.log(error);
+    }).catch(er => {
+      error = er.message;
+      console.log(er.message);
     })
-    
   }
+
+  // init Load & for error if occurs
+  function initLoad() {
+    Loading = true;
+    error = '';
+    getUser();
+    get_project(url, "?page=1&per_page=6");
+  }
+
   function loadMore() {
     // click more pagination
-    num++;
-    let param =  `?page=${num}&per_page=6`;
+    error = '';
     LoadingMore = true;
+    let param =  `?page=${num}&per_page=6`;
     get_project("https://api.netlify.com/api/v1/sites", param);
-
     // calculate total side to determined load more
     let calc = total_sites - (num * 6);
     // console.log(total_sites, sites.length, calc);
     if(calc <= 0){
       isLoadedAll = true;
     }
-
   }
 
   // get user & get total sites
@@ -61,7 +70,7 @@
     get_project("https://api.netlify.com/api/v1/users", '');
   }
   
-
+  // convert timedate
   function converDate(date) {
     let newdate = new Date(date);
     let arrayUTC = newdate.toUTCString().split(" ");
@@ -69,65 +78,100 @@
     return res.join(" ");
   }
   
-
+  // Load first time
   onMount(() => {
-    getUser();
-    Loading = true;
-    get_project(url, "?page=1&per_page=6");
+    initLoad();
   })
 </script>
 
 <section class="main" id="projects">
   <h1 class="text-header">PROJECTS</h1>
-    <div class="list-projects">
-      {#if Loading}
-        <LoadingIcon/>
-      {/if}
-      {#each sites as site}
-        <div class="projects">
-          <div class="img-container">
-            <span class="date">{converDate(site["created_at"])}</span>
-            <img
-              src={site["screenshot_url"] || Placeholder}
-              class="placeholder"
-              alt=""
-            />
+  {#if Loading && !error}
+      <LoadingIcon/>
+  {:else if error && Loading}
+      <div class="error-wrapper">
+        <p class="error">{error}</p>  
+        <p class='info'>Check your internet and <span class="loadmore" on:keypress={initLoad} role="button" tabindex="0" on:click={initLoad}>Reload</span></p>
+      </div>
+  {:else}
+      <div class="list-projects">
+        {#each sites as site}
+          <div class="projects">
+            <div class="img-container">
+              <span class="date">{converDate(site["created_at"])}</span>
+              <img
+                src={site["screenshot_url"] || Placeholder}
+                class="placeholder"
+                alt=""
+              />
+            </div>
+            <div class="context">
+              <h1 class="subtitle">{site["name"].split("-").join(" ")}</h1>
+              <a class="link" href={site["url"]} target="_blank">visit site</a>
+            </div>
           </div>
-          <div class="context">
-            <h1 class="subtitle">{site["name"].split("-").join(" ")}</h1>
-            <a class="link" href={site["url"]} target="_blank">visit site</a>
-          </div>
-        </div>
-      {/each}
-    </div>
-      {#if LoadingMore}
-        <LoadingIcon/>
+        {/each}
+      </div>
+      {#if LoadingMore && !error}
+        <LoadingIcon/> 
+      {:else if error && LoadingMore}
+      <div class="error-wrapper">
+        <p class="error">{error}</p>  
+        <p class='info'>Check your internet and <span class="loadmore" on:keypress={loadMore} role="button" tabindex="0" on:click={loadMore}>Reload</span></p>
+      </div>
       {:else}
-      {#if !isLoadedAll && !Loading}
-        <button on:click={loadMore}>
-          Load More
-          <span class="download">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              class={isLoad ? "rotate" : ""}
-              viewBox="0 0 24 24"
-              ><path
-                d="m11.293 17.293 1.414 1.414L19.414 12l-6.707-6.707-1.414 1.414L15.586 11H6v2h9.586z"
-              /></svg
-            >
-          </span>
-        </button>
-        {/if}
+        {#if !isLoadedAll && !Loading}
+          <button class="button-style" on:click={loadMore}>
+            Load More
+            <span class="download">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                class={isLoad ? "rotate" : ""}
+                viewBox="0 0 24 24"
+                ><path
+                  d="m11.293 17.293 1.414 1.414L19.414 12l-6.707-6.707-1.414 1.414L15.586 11H6v2h9.586z"
+                /></svg
+              >
+            </span>
+          </button>
+          {/if}
+      {/if}
     {/if}
 </section>
 
 <style>
-  .loading{
-    font-size: 2rem;
-    text-align: center;
+
+  .error-wrapper{
+    font-family: var(--font-secondary);
+    margin-top:5rem;
+    line-height: 0;
+    text-transform: uppercase;
   }
+  .error{
+    font-size: 1.5rem;
+    font-style: italic;
+    color: red;
+    margin: 2rem;
+  }
+
+  .info{
+    line-height: 0;
+    font-size: 1rem;
+    font-weight: 400;
+    color: rgb(234, 232, 232);
+  }
+
+  .loadmore{
+    cursor: pointer;
+    color: aqua;
+  }
+
+  .loadmore:hover{
+    text-decoration: underline;
+  }
+
  .main {
     background-color: var(--secondary-bg);
     padding-bottom: 4rem;
@@ -141,13 +185,13 @@
     font-size: 1rem;
   }
 
-  button {
+  .button-style {
     margin: auto;
     transition: all 0.5s ease-in-out;
     transform: translateX(0);
   }
   
-  button:hover svg {
+  .button-style:hover svg {
     transform: translateX(5px);
   }
 

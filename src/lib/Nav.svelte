@@ -127,16 +127,15 @@
     display: none;
   } */
 
-  @media screen and (max-width: 1055px) {
-    .navbar {
-      justify-content: center;
-    }
-  }
-
   @media screen and (max-width: 600px) {
     .brand{
       display: none;
     }
+    
+    .navbar {
+      justify-content: center;
+    }
+
     .nav-mobile {
       display: flex;
       width: 100%;
